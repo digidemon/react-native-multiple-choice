@@ -59,7 +59,8 @@ class MultipleChoice extends BaseComponent {
     componentWillReceiveProps(nextProps) {
         this._updateSelectedOptions(nextProps.selectedOptions);
         this.setState({
-            disabled: nextProps.disabled
+            disabled: nextProps.disabled,
+            dataSource: this.ds.cloneWithRows(nextProps.options)
         });
     }
     _updateSelectedOptions(selectedOptions) {
@@ -169,6 +170,7 @@ class MultipleChoice extends BaseComponent {
                 style={[Styles.list, this.props.style]}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}
+                scrollEnabled={this.props.scrollEnabled}
             />
         );
     }
